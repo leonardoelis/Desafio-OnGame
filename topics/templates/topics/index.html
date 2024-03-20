@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" type="text/css" href="{% static 'topics/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Tópicos</h2>
+        {% for topic in topics %}
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                {% if topic.image %}
+                    <img src="{{ MEDIA_URL }}{{ topic.image }}" class="card-img-top" alt="">
+                {% endif %}
+                <div class="card-body">
+                    <h3 class="card-title">{{ topic.subject }}</h3>
+                    <h5><span class="badge bg-secondary">{{ topic.category }}</span></h5>
+                    <p>{{ topic.author.first_name }} {{ topic.author.last_name }}</p>
+                    <p class="text-muted small">{{ topic.post_date }}</p>
+                    <a href="{% url 'show_topic' topic.id %}" class="btn btn-primary">Acessar Tópico</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <script>
+        console.log('{{user}}');
+    </script>
+{% endblock %}

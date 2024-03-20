@@ -1,0 +1,12 @@
+.container {
+    min-height: 100vh;
+}
+
+.card {
+    width: 100%; 
+    max-width: 450px;
+}
+
+p.text-center {
+    padding-top: 4%;
+}
