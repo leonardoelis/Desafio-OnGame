@@ -10,18 +10,15 @@ def register_user(request):
         return redirect('index')
 
     context = {}
-    print(request.method)
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            a = form.save()
-            print(a)
+            form.save()
             return redirect('login')
 
     else:
         form = CustomUserCreationForm()
 
-    print(form)
     context['form'] = form
     return render(request, 'users/registerUser.html', context)
 
@@ -31,12 +28,10 @@ def edit_user(request):
         return redirect('login')
 
     user = User.objects.get(id=request.user.pk)
-    print(user)
+
     context = {}
-    print(request.user.pk)
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, instance=user)
-        print(form.is_valid())
         if form.is_valid():
             form.save()
             return redirect('index')

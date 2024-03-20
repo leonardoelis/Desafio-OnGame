@@ -36,10 +36,7 @@ def register_topic(request):
 
 def show_topic(request, id):
     topic = Topic.objects.get(id=id)
-    print(topic)
     comments = Comment.objects.filter(topic=id)
-    for comment in comments:
-        print(comment.text)
 
     form = CommentForm()
     context = {}
